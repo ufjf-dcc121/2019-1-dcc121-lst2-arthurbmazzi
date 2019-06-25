@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 2</title>
+</head>
+
+<body>
+    <input type="text" id="entrada" />
+
+    <button id="emp">Empilhar</button>
+    <button id="desemp">Desempilhar</button>
+
+    <ol id="lista">
+
+    </ol>
+
+    <script>
+        var lista = document.querySelector('ol');
+
+        var elemento = document.querySelector('#entrada');
+
+        var a = document.querySelector('#emp');
+        var b = document.querySelector('#desemp');
+
+        a.addEventListener('click', function () {
+            var item = '<li>' + elemento.value + '</li>';
+            lista.innerHTML += item;
+            elemento.value = '';
+            elemento.focus();
+        })
+
+        b.addEventListener('click', function () {
+            var list = document.getElementById("lista");
+            var listItems = lista.getElementsByTagName("li");
+            var last = listItems[listItems.length - 1];
+            last.parentNode.removeChild(last);
+        })        
+    </script>
+</body>
+
+</html>

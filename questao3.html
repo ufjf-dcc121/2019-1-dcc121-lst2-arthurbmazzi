@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 3</title>
+</head>
+
+<body>
+    <form name="pessoa">
+            <input type="hidden" name="tipo" value="adulto"/>
+            <input type="hidden" name="chave" value=""/>
+        Nome: <input type="text" id="nome" name="nome" value="Fulano"/><br /><br />
+        Idade: <input type="number" id="idade" name="idade" value="23"/><br /><br />
+        <button type="submit" id="env" name="enviar">Enviar</button>
+        <button  id="env" name="excluir" style="display: none;">Excluir</button>
+    </form>
+
+    <h1>Adultos</h1>
+    <ul  id="adultos">
+
+    </ul>
+    <h1>Estudante</h1>
+    <ul id="estudante">
+        
+    </ul>
+    <script>
+        var lista1 = document.getElementById('adultos');
+        var lista2 = document.getElementById('estudante');
+        var adultos = [];
+        var estudantes = [];
+        var chave= 1;
+
+        var envio = document.forms.pessoa.enviar;
+
+        envio.addEventListener('click', function (e) {
+            e.preventDefault();
+            var nome = document.pessoa.nome.value;
+            var idade = Number(document.pessoa.idade.value);
+
+
+            //var item = '<li contenteditable="true">' + nome + " - " + idade + '</li>';
+            var item = document.createElement("li");
+            item.textContent = nome +" - "+idade;
+
+            if (idade >= 18) {
+                adultos.push({"chave": chave++, "nome": nome, "idade": idade});
+                atualizaTela(adultos, lista1);
+            } else {
+                estudantes.push({"chave": chave++, "nome": nome, "idade": idade});
+                atualizaTela(estudantes, lista2);
+            }
+            document.forms.pessoa.reset();
+        })
+
+        function atualizaTela(pessoas, lista) {
+            lista.innerHTML = "";
+            for (var i = 0; i < pessoas.length; i++) {
+                var pessoa = pessoas[i];
+                var item = document.createElement("li");
+                item.textContent = pessoa.nome +" - "+pessoa.idade;
+                lista.appendChild(item);            
+                
+                item.addEventListener('click', function(){
+                    document.forms.pessoa.tipo.value="adulto";
+                    document.forms.pessoa.chave.value=pessoa.chave;
+                    document.forms.pessoa.nome.value=pessoa.nome;
+                    document.forms.pessoa.idade.value=pessoa.idade;
+                    document.forms.pessoa.excluir.style.display = "inline";
+                });
+            }
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 1</title>
+</head>
+
+<body>
+    <input type="number" id="num" name="quantidade" />
+    <input type="text" id="produto" name="item" />
+
+    <button id="add">Adicionar</button>
+    <button id="apaga">Limpar</button>
+    
+    <ul>
+
+    </ul>
+
+    <script>
+        var lista = document.querySelector('ul');
+
+        var num = document.querySelector('#num');
+        var produto = document.querySelector('#produto');
+
+        var add = document.querySelector('#add');
+        var apagar = document.querySelector('#apaga');
+
+        add.addEventListener('click', function () {
+            var item = '<li>' + num.value + " " + produto.value + '</li>';
+            lista.innerHTML += item;
+            num.value = '';
+            produto.value = '';
+            num.focus();
+        })
+
+        apagar.addEventListener('click', function () {
+            lista.innerHTML  = '';
+        })
+    </script>
+</body>
+
+</html>
