@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista 2.2 - Javascript e Listas</title>
+</head>
+
+<body>
+    <form name="formulario" onsubmit="return processar('myTable')">
+        Animal: <input type="text" name="an">
+        Altura: <input type="number" name="al">
+        Peso: <input type="number" name="peso">
+        Velocidade: <input type="number" name="vel">
+        Idade Máx: <input type="number" name="idademax">
+        <input type="submit" value="Enviar">
+    </form>
+    <table border='1' width='500' height='20'>
+        <tr>
+            <td>Animal</td>
+            <td>Altura</td>
+            <td>Peso</td>
+            <td>Velocidade</td>
+            <td>Idade Máxima</td>
+        </tr>
+        <tbody id="myTable"></tbody>
+    </table>
+    <script>
+        var d = document;
+        function processar(idTabela) {
+            var newRow = d.createElement('tr');
+            var x = d.getElementsByName('an')[0].value;
+            newRow.insertCell(0).innerHTML = d.getElementsByName('an')[0].value;
+            newRow.insertCell(1).innerHTML = d.getElementsByName('al')[0].value;
+            newRow.insertCell(2).innerHTML = d.getElementsByName('peso')[0].value;
+            newRow.insertCell(3).innerHTML = d.getElementsByName('vel')[0].value;
+            newRow.insertCell(4).innerHTML = d.getElementsByName('idademax')[0].value;
+            d.getElementById(idTabela).appendChild(newRow);
+            return false;
+        }
+    </script>
+</body>
+
+</html>
